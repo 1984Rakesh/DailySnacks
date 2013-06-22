@@ -1,4 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3381.3" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+    <entity name="DSConsolidatedOrder" syncable="YES">
+        <attribute name="createOn" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="perPersonOrders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DSPerPersonOrder" inverseName="consolidatedOrder" inverseEntity="DSPerPersonOrder" syncable="YES"/>
+    </entity>
+    <entity name="DSPerPersonOrder" syncable="YES">
+        <relationship name="consolidatedOrder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DSConsolidatedOrder" inverseName="perPersonOrders" inverseEntity="DSConsolidatedOrder" syncable="YES"/>
+        <relationship name="person" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DSPerson" inverseName="orders" inverseEntity="DSPerson" syncable="YES"/>
+        <relationship name="snacks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DSSnack" inverseName="orders" inverseEntity="DSSnack" syncable="YES"/>
+    </entity>
+    <entity name="DSPerson" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DSPerPersonOrder" inverseName="person" inverseEntity="DSPerPersonOrder" syncable="YES"/>
+    </entity>
+    <entity name="DSSnack" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DSPerPersonOrder" inverseName="snacks" inverseEntity="DSPerPersonOrder" syncable="YES"/>
+        <relationship name="previousPrices" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DSSnackPrice" inverseName="snack" inverseEntity="DSSnackPrice" syncable="YES"/>
+    </entity>
+    <entity name="DSSnackPrice" syncable="YES">
+        <attribute name="dateAdded" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="snack" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DSSnack" inverseName="previousPrices" inverseEntity="DSSnack" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="DSSnack" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="DSPerPersonOrder" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="DSConsolidatedOrder" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="DSPerson" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="DSSnackPrice" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
 </model>
