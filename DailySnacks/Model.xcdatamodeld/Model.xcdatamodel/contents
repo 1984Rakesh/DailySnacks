@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3381.3" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="DSConsolidatedOrder" syncable="YES">
-        <attribute name="createOn" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="createOn" attributeType="Date" indexed="YES" syncable="YES"/>
         <relationship name="perPersonOrders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DSPerPersonOrder" inverseName="consolidatedOrder" inverseEntity="DSPerPersonOrder" syncable="YES"/>
     </entity>
     <entity name="DSPerPersonOrder" syncable="YES">
         <relationship name="consolidatedOrder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DSConsolidatedOrder" inverseName="perPersonOrders" inverseEntity="DSConsolidatedOrder" syncable="YES"/>
         <relationship name="person" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DSPerson" inverseName="orders" inverseEntity="DSPerson" syncable="YES"/>
-        <relationship name="snacks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DSSnack" inverseName="orders" inverseEntity="DSSnack" syncable="YES"/>
+        <relationship name="snackOrders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DSSnackOrder" inverseName="personOrder" inverseEntity="DSSnackOrder" syncable="YES"/>
     </entity>
     <entity name="DSPerson" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DSPerPersonOrder" inverseName="person" inverseEntity="DSPerPersonOrder" syncable="YES"/>
     </entity>
     <entity name="DSSnack" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DSPerPersonOrder" inverseName="snacks" inverseEntity="DSPerPersonOrder" syncable="YES"/>
+        <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="previousPrices" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DSSnackPrice" inverseName="snack" inverseEntity="DSSnackPrice" syncable="YES"/>
+        <relationship name="snackOrders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DSSnackOrder" inverseName="snack" inverseEntity="DSSnackOrder" syncable="YES"/>
+    </entity>
+    <entity name="DSSnackOrder" syncable="YES">
+        <attribute name="count" attributeType="Integer 16" defaultValueString="1" syncable="YES"/>
+        <relationship name="personOrder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DSPerPersonOrder" inverseName="snackOrders" inverseEntity="DSPerPersonOrder" syncable="YES"/>
+        <relationship name="snack" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DSSnack" inverseName="snackOrders" inverseEntity="DSSnack" syncable="YES"/>
     </entity>
     <entity name="DSSnackPrice" syncable="YES">
         <attribute name="dateAdded" optional="YES" attributeType="Date" syncable="YES"/>
@@ -24,10 +29,11 @@
         <relationship name="snack" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DSSnack" inverseName="previousPrices" inverseEntity="DSSnack" syncable="YES"/>
     </entity>
     <elements>
-        <element name="DSSnack" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="DSPerPersonOrder" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="DSConsolidatedOrder" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="DSPerson" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="DSSnackPrice" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="DSConsolidatedOrder" positionX="-324" positionY="-273" width="128" height="73"/>
+        <element name="DSPerPersonOrder" positionX="-137" positionY="-252" width="128" height="90"/>
+        <element name="DSPerson" positionX="34" positionY="-360" width="128" height="73"/>
+        <element name="DSSnack" positionX="241" positionY="-162" width="128" height="88"/>
+        <element name="DSSnackPrice" positionX="412" positionY="-162" width="128" height="90"/>
+        <element name="DSSnackOrder" positionX="45" positionY="-162" width="128" height="88"/>
     </elements>
 </model>
