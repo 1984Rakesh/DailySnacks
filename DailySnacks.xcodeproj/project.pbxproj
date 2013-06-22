@@ -21,6 +21,7 @@
 		2B17981917761A29004D6584 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1797FB17761A29004D6584 /* UIKit.framework */; };
 		2B17982117761A29004D6584 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B17981F17761A29004D6584 /* InfoPlist.strings */; };
 		2B17982317761A29004D6584 /* DailySnacksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B17982217761A29004D6584 /* DailySnacksTests.m */; };
+		2B17982E17761A54004D6584 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B17982C17761A54004D6584 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		2B17981E17761A29004D6584 /* DailySnacksTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DailySnacksTests-Info.plist"; sourceTree = "<group>"; };
 		2B17982017761A29004D6584 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2B17982217761A29004D6584 /* DailySnacksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DailySnacksTests.m; sourceTree = "<group>"; };
+		2B17982D17761A54004D6584 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				2B17980017761A29004D6584 /* InfoPlist.strings */,
 				2B17980317761A29004D6584 /* main.m */,
 				2B17980517761A29004D6584 /* DailySnacks-Prefix.pch */,
+				2B17982C17761A54004D6584 /* Model.xcdatamodeld */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				2B17980417761A29004D6584 /* main.m in Sources */,
 				2B17980E17761A29004D6584 /* DSViewController.m in Sources */,
 				2B17980817761A29004D6584 /* DSAppDelegate.m in Sources */,
+				2B17982E17761A54004D6584 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +469,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2B17982C17761A54004D6584 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2B17982D17761A54004D6584 /* Model.xcdatamodel */,
+			);
+			currentVersion = 2B17982D17761A54004D6584 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2B1797EC17761A29004D6584 /* Project object */;
 }
