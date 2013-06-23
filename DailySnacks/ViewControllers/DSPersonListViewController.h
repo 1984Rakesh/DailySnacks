@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DSPerson.h"
 
-@interface DSPersonListViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@protocol DSPersonListViewControllerDelegate;
+
+@interface DSPersonListViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
+    __unsafe_unretained id<DSPersonListViewControllerDelegate> delegate;
+}
+@property (nonatomic, unsafe_unretained) id<DSPersonListViewControllerDelegate> delegate;
+
+@end
+
+
+@protocol DSPersonListViewControllerDelegate <NSObject>
+
+- (void) personListViewController:(DSPersonListViewController *)personListViewController didSelectPerson:(DSPerson *)person;
 
 @end

@@ -19,6 +19,8 @@
 
 @implementation DSPersonListViewController
 
+@synthesize delegate;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -116,7 +118,18 @@
     return cell;
 }
 
-#pragma mark - UITableViewController
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    id<NSFetchedResultsSectionInfo> sectionInfo = [[[self fetchedPeopleResultController] sections] objectAtIndex:[indexPath section]];
+    DSPerson *person = [[sectionInfo objects] objectAtIndex:[indexPath row]];
+    
+    if( delegate != nil ){
+        [delegate personListViewController:self
+                           didSelectPerson:person];
+    }
+}
+
+#pragma mark - NSFetchedResultsControllerDelegate
 - (void) controllerWillChangeContent:(NSFetchedResultsController *)controller {
     [[self tableView] beginUpdates];
 }

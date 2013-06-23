@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "DSPerPersonOrder.h"
+#import "DSPersonListViewController.h"
 
-@interface DSPerPersonOrderViewController : UITableViewController
+@interface DSPerPersonOrderViewController : UITableViewController <DSPersonListViewControllerDelegate>
 
 @property (nonatomic, retain) DSPerPersonOrder *perPersonOrder;
 

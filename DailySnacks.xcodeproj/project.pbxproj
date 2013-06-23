@@ -34,6 +34,9 @@
 		2B33C9781776220A009F697F /* DSSnackOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B33C9771776220A009F697F /* DSSnackOrder.m */; };
 		2BA3A3A417770F63002E4F76 /* DSPersonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3A3A317770F62002E4F76 /* DSPersonDetailViewController.m */; };
 		2BA3A3A71777132D002E4F76 /* DSPersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3A3A61777132D002E4F76 /* DSPersonCell.m */; };
+		2BA3A3AA17774624002E4F76 /* DSSnackListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3A3A917774623002E4F76 /* DSSnackListViewController.m */; };
+		2BA3A3AD1777496A002E4F76 /* DSSnackDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3A3AC1777496A002E4F76 /* DSSnackDetailViewController.m */; };
+		2BA3A3B617775C57002E4F76 /* DSSnackDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3A3B517775C57002E4F76 /* DSSnackDetailCell.m */; };
 		2BAF12031776E37A007B1634 /* DSDataModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF12021776E37A007B1634 /* DSDataModelManager.m */; };
 		2BAF12061776F5B2007B1634 /* DSSnackOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF12051776F5B2007B1634 /* DSSnackOrderCell.m */; };
 		2BAF120917770412007B1634 /* PerPersonOrderTableSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BAF120817770412007B1634 /* PerPersonOrderTableSectionHeaderView.xib */; };
@@ -96,6 +99,12 @@
 		2BA3A3A317770F62002E4F76 /* DSPersonDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPersonDetailViewController.m; sourceTree = "<group>"; };
 		2BA3A3A51777132D002E4F76 /* DSPersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPersonCell.h; sourceTree = "<group>"; };
 		2BA3A3A61777132D002E4F76 /* DSPersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPersonCell.m; sourceTree = "<group>"; };
+		2BA3A3A817774623002E4F76 /* DSSnackListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSSnackListViewController.h; sourceTree = "<group>"; };
+		2BA3A3A917774623002E4F76 /* DSSnackListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSSnackListViewController.m; sourceTree = "<group>"; };
+		2BA3A3AB1777496A002E4F76 /* DSSnackDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSSnackDetailViewController.h; sourceTree = "<group>"; };
+		2BA3A3AC1777496A002E4F76 /* DSSnackDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSSnackDetailViewController.m; sourceTree = "<group>"; };
+		2BA3A3B417775C57002E4F76 /* DSSnackDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSSnackDetailCell.h; sourceTree = "<group>"; };
+		2BA3A3B517775C57002E4F76 /* DSSnackDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSSnackDetailCell.m; sourceTree = "<group>"; };
 		2BAF12011776E37A007B1634 /* DSDataModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSDataModelManager.h; sourceTree = "<group>"; };
 		2BAF12021776E37A007B1634 /* DSDataModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSDataModelManager.m; sourceTree = "<group>"; };
 		2BAF12041776F5B2007B1634 /* DSSnackOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSSnackOrderCell.h; sourceTree = "<group>"; };
@@ -140,6 +149,8 @@
 				2BAF12051776F5B2007B1634 /* DSSnackOrderCell.m */,
 				2BA3A3A51777132D002E4F76 /* DSPersonCell.h */,
 				2BA3A3A61777132D002E4F76 /* DSPersonCell.m */,
+				2BA3A3B417775C57002E4F76 /* DSSnackDetailCell.h */,
+				2BA3A3B517775C57002E4F76 /* DSSnackDetailCell.m */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -257,6 +268,10 @@
 				2BAF120F177707CC007B1634 /* DSPersonListViewController.m */,
 				2BA3A3A217770F62002E4F76 /* DSPersonDetailViewController.h */,
 				2BA3A3A317770F62002E4F76 /* DSPersonDetailViewController.m */,
+				2BA3A3A817774623002E4F76 /* DSSnackListViewController.h */,
+				2BA3A3A917774623002E4F76 /* DSSnackListViewController.m */,
+				2BA3A3AB1777496A002E4F76 /* DSSnackDetailViewController.h */,
+				2BA3A3AC1777496A002E4F76 /* DSSnackDetailViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -382,6 +397,8 @@
 				2BAF120D177704D4007B1634 /* DSPPOTableSectionHeaderView.m in Sources */,
 				2B17980417761A29004D6584 /* main.m in Sources */,
 				2B33C9751776220A009F697F /* DSPerson.m in Sources */,
+				2BA3A3B617775C57002E4F76 /* DSSnackDetailCell.m in Sources */,
+				2BA3A3AD1777496A002E4F76 /* DSSnackDetailViewController.m in Sources */,
 				2B17980E17761A29004D6584 /* DSViewController.m in Sources */,
 				2BAF1210177707CC007B1634 /* DSPersonListViewController.m in Sources */,
 				2BA3A3A71777132D002E4F76 /* DSPersonCell.m in Sources */,
@@ -397,6 +414,7 @@
 				2B33C9781776220A009F697F /* DSSnackOrder.m in Sources */,
 				2B33C96917762209009F697F /* DSPerPersonOrder.m in Sources */,
 				2BAF12031776E37A007B1634 /* DSDataModelManager.m in Sources */,
+				2BA3A3AA17774624002E4F76 /* DSSnackListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
