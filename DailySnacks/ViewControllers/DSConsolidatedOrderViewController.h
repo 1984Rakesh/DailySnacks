@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DSConsolidatedOrder.h"
 
 @interface DSConsolidatedOrderViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
-@property (nonatomic,retain) NSManagedObjectContext *managedObjectContext;
+
+@property (nonatomic, retain) DSConsolidatedOrder *consolidatedOrder;
 
 @end

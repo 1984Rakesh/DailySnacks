@@ -15,4 +15,8 @@
 @dynamic dateCreated;
 @dynamic perPersonOrders;
 
+- (void) awakeFromInsert {
+    [self setDateCreated:[NSDate date]];
+}
+
 @end

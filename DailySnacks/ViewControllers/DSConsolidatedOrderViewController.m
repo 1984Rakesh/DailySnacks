@@ -11,7 +11,7 @@
 
 @interface DSConsolidatedOrderViewController ()
 
-@property (nonatomic, retain) NSFetchedResultsController *fetchedConsolidatedOrdersResultController;
+
 
 @end
 
@@ -28,48 +28,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSError *error = nil;
-    if( [[self fetchedConsolidatedOrdersResultController] performFetch:&error] == NO ){
-        NSLog(@"Error Fetching Consolidated Orders :: %@",[error localizedDescription]);
-    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Private
-- (NSFetchedResultsController *) fetchedConsolidatedOrdersResultController {
-    if( _fetchedConsolidatedOrdersResultController != nil ){
-        return _fetchedConsolidatedOrdersResultController;
-    }
-    
-    NSString *entityName = NSStringFromClass([DSConsolidatedOrder class]);
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"dateCreated"
-                                                                     ascending:NO];
-    
-    
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:entityName];
-    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-    
-    _fetchedConsolidatedOrdersResultController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                                     managedObjectContext:[self managedObjectContext]
-                                                                                       sectionNameKeyPath:nil
-                                                                                                cacheName:[fetchRequest entityName]];
-    [_fetchedConsolidatedOrdersResultController setDelegate:self];
-    
-    return _fetchedConsolidatedOrdersResultController;
-}
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[[self fetchedConsolidatedOrdersResultController] sections] count];
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    id<NSFetchedResultsSectionInfo> sectionInfo = [[[self fetchedConsolidatedOrdersResultController] sections] objectAtIndex:section];
-    NSInteger numberOfRows = [sectionInfo numberOfObjects];
+    NSInteger numberOfRows = 0;
     return numberOfRows;
 }
 

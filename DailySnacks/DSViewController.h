@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DSViewController : UITableViewController
+@interface DSViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+
+@property (nonatomic,retain) NSManagedObjectContext *managedObjectContext;
 
 @end
