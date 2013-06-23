@@ -32,7 +32,13 @@
 		2B33C9721776220A009F697F /* DSConsolidatedOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B33C9711776220A009F697F /* DSConsolidatedOrder.m */; };
 		2B33C9751776220A009F697F /* DSPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B33C9741776220A009F697F /* DSPerson.m */; };
 		2B33C9781776220A009F697F /* DSSnackOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B33C9771776220A009F697F /* DSSnackOrder.m */; };
+		2BA3A3A417770F63002E4F76 /* DSPersonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3A3A317770F62002E4F76 /* DSPersonDetailViewController.m */; };
+		2BA3A3A71777132D002E4F76 /* DSPersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3A3A61777132D002E4F76 /* DSPersonCell.m */; };
 		2BAF12031776E37A007B1634 /* DSDataModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF12021776E37A007B1634 /* DSDataModelManager.m */; };
+		2BAF12061776F5B2007B1634 /* DSSnackOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF12051776F5B2007B1634 /* DSSnackOrderCell.m */; };
+		2BAF120917770412007B1634 /* PerPersonOrderTableSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BAF120817770412007B1634 /* PerPersonOrderTableSectionHeaderView.xib */; };
+		2BAF120D177704D4007B1634 /* DSPPOTableSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF120C177704D4007B1634 /* DSPPOTableSectionHeaderView.m */; };
+		2BAF1210177707CC007B1634 /* DSPersonListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF120F177707CC007B1634 /* DSPersonListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,8 +92,19 @@
 		2B33C9741776220A009F697F /* DSPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPerson.m; sourceTree = "<group>"; };
 		2B33C9761776220A009F697F /* DSSnackOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSSnackOrder.h; sourceTree = "<group>"; };
 		2B33C9771776220A009F697F /* DSSnackOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSSnackOrder.m; sourceTree = "<group>"; };
+		2BA3A3A217770F62002E4F76 /* DSPersonDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPersonDetailViewController.h; sourceTree = "<group>"; };
+		2BA3A3A317770F62002E4F76 /* DSPersonDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPersonDetailViewController.m; sourceTree = "<group>"; };
+		2BA3A3A51777132D002E4F76 /* DSPersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPersonCell.h; sourceTree = "<group>"; };
+		2BA3A3A61777132D002E4F76 /* DSPersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPersonCell.m; sourceTree = "<group>"; };
 		2BAF12011776E37A007B1634 /* DSDataModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSDataModelManager.h; sourceTree = "<group>"; };
 		2BAF12021776E37A007B1634 /* DSDataModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSDataModelManager.m; sourceTree = "<group>"; };
+		2BAF12041776F5B2007B1634 /* DSSnackOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSSnackOrderCell.h; sourceTree = "<group>"; };
+		2BAF12051776F5B2007B1634 /* DSSnackOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSSnackOrderCell.m; sourceTree = "<group>"; };
+		2BAF120817770412007B1634 /* PerPersonOrderTableSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PerPersonOrderTableSectionHeaderView.xib; sourceTree = "<group>"; };
+		2BAF120B177704D4007B1634 /* DSPPOTableSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPPOTableSectionHeaderView.h; sourceTree = "<group>"; };
+		2BAF120C177704D4007B1634 /* DSPPOTableSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPPOTableSectionHeaderView.m; sourceTree = "<group>"; };
+		2BAF120E177707CC007B1634 /* DSPersonListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPersonListViewController.h; sourceTree = "<group>"; };
+		2BAF120F177707CC007B1634 /* DSPersonListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPersonListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +136,10 @@
 			children = (
 				2B02FB5E1776CB0F00C33524 /* DOrderListCell.h */,
 				2B02FB5F1776CB0F00C33524 /* DOrderListCell.m */,
+				2BAF12041776F5B2007B1634 /* DSSnackOrderCell.h */,
+				2BAF12051776F5B2007B1634 /* DSSnackOrderCell.m */,
+				2BA3A3A51777132D002E4F76 /* DSPersonCell.h */,
+				2BA3A3A61777132D002E4F76 /* DSPersonCell.m */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -156,6 +177,7 @@
 		2B1797FD17761A29004D6584 /* DailySnacks */ = {
 			isa = PBXGroup;
 			children = (
+				2BAF120A17770465007B1634 /* CustomView */,
 				2B02FB5D1776CA9700C33524 /* TableViewCells */,
 				2B33C985177624EB009F697F /* ViewControllers */,
 				2B33C966177621D3009F697F /* Model */,
@@ -173,6 +195,7 @@
 		2B1797FE17761A29004D6584 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2BAF120717770378007B1634 /* XIBS */,
 				2B1797FF17761A29004D6584 /* DailySnacks-Info.plist */,
 				2B17980017761A29004D6584 /* InfoPlist.strings */,
 				2B17980317761A29004D6584 /* main.m */,
@@ -230,8 +253,29 @@
 				2B02FB581776B91C00C33524 /* DSPerPersonOrderViewController.m */,
 				2B02FB5A1776B98400C33524 /* DSSnackOrderViewController.h */,
 				2B02FB5B1776B98400C33524 /* DSSnackOrderViewController.m */,
+				2BAF120E177707CC007B1634 /* DSPersonListViewController.h */,
+				2BAF120F177707CC007B1634 /* DSPersonListViewController.m */,
+				2BA3A3A217770F62002E4F76 /* DSPersonDetailViewController.h */,
+				2BA3A3A317770F62002E4F76 /* DSPersonDetailViewController.m */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		2BAF120717770378007B1634 /* XIBS */ = {
+			isa = PBXGroup;
+			children = (
+				2BAF120817770412007B1634 /* PerPersonOrderTableSectionHeaderView.xib */,
+			);
+			path = XIBS;
+			sourceTree = "<group>";
+		};
+		2BAF120A17770465007B1634 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				2BAF120B177704D4007B1634 /* DSPPOTableSectionHeaderView.h */,
+				2BAF120C177704D4007B1634 /* DSPPOTableSectionHeaderView.m */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,6 +355,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BAF120917770412007B1634 /* PerPersonOrderTableSectionHeaderView.xib in Resources */,
 				2B17981017761A29004D6584 /* Images.xcassets in Resources */,
 				2B17980217761A29004D6584 /* InfoPlist.strings in Resources */,
 				2B17980B17761A29004D6584 /* Main.storyboard in Resources */,
@@ -332,10 +377,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BAF12061776F5B2007B1634 /* DSSnackOrderCell.m in Sources */,
 				2B33C96F1776220A009F697F /* DSSnack.m in Sources */,
+				2BAF120D177704D4007B1634 /* DSPPOTableSectionHeaderView.m in Sources */,
 				2B17980417761A29004D6584 /* main.m in Sources */,
 				2B33C9751776220A009F697F /* DSPerson.m in Sources */,
 				2B17980E17761A29004D6584 /* DSViewController.m in Sources */,
+				2BAF1210177707CC007B1634 /* DSPersonListViewController.m in Sources */,
+				2BA3A3A71777132D002E4F76 /* DSPersonCell.m in Sources */,
 				2B17980817761A29004D6584 /* DSAppDelegate.m in Sources */,
 				2B33C9721776220A009F697F /* DSConsolidatedOrder.m in Sources */,
 				2B02FB591776B91C00C33524 /* DSPerPersonOrderViewController.m in Sources */,
@@ -343,6 +392,7 @@
 				2B02FB561776B85500C33524 /* DSConsolidatedOrderViewController.m in Sources */,
 				2B02FB5C1776B98400C33524 /* DSSnackOrderViewController.m in Sources */,
 				2B33C96C1776220A009F697F /* DSSnackPrice.m in Sources */,
+				2BA3A3A417770F63002E4F76 /* DSPersonDetailViewController.m in Sources */,
 				2B17982E17761A54004D6584 /* Model.xcdatamodeld in Sources */,
 				2B33C9781776220A009F697F /* DSSnackOrder.m in Sources */,
 				2B33C96917762209009F697F /* DSPerPersonOrder.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "DSPerPersonOrderViewController.h"
+#import "DSPPOTableSectionHeaderView.h"
 
 @interface DSPerPersonOrderViewController ()
 
@@ -25,6 +26,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    [[self tableView] registerNib:[UINib nibWithNibName:@"PerPersonOrderTableSectionHeaderView"
+//                                                 bundle:[NSBundle mainBundle]]
+//forHeaderFooterViewReuseIdentifier:@"PerPersonOrderTableSectionHeaderView"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,6 +62,11 @@
     
     return cell;
 }
+
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//    DSPPOTableSectionHeaderView *sectionHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"PerPersonOrderTableSectionHeaderView"];
+//    return sectionHeaderView;
+//}
 
 /*
 // Override to support conditional editing of the table view.
@@ -97,16 +107,10 @@
 }
 */
 
-/*
-#pragma mark - Navigation
 
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - Button Actions
+- (IBAction)selectPersonTapAction:(id)sender {
+    [self performSegueWithIdentifier:@"addPersonSegue" sender:self];
 }
-
- */
 
 @end
