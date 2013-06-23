@@ -11,7 +11,7 @@
 
 @interface DSConsolidatedOrderViewController ()
 
-
+- (NSManagedObjectContext *) managedObjectContext;
 
 @end
 
@@ -32,6 +32,11 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Private
+- (NSManagedObjectContext *) managedObjectContext {
+    return [[DSDataModelManager sharedManager] managedObjectContext];
 }
 
 #pragma mark - Segue

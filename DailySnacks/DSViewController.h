@@ -10,6 +10,4 @@
 
 @interface DSViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
-@property (nonatomic,retain) NSManagedObjectContext *managedObjectContext;
-
 @end

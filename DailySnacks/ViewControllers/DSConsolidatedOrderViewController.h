@@ -13,6 +13,5 @@
 
 
 @property (nonatomic, retain) DSConsolidatedOrder *consolidatedOrder;
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end

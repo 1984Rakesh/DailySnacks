@@ -11,7 +11,6 @@
 
 @interface DSPerPersonOrderViewController : UITableViewController
 
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) DSPerPersonOrder *perPersonOrder;
 
 @end

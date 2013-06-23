@@ -15,6 +15,8 @@
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedConsolidatedOrdersResultController;
 
+- (NSManagedObjectContext *) managedObjectContext;
+
 @end
 
 @implementation DSViewController
@@ -36,6 +38,10 @@
 }
 
 #pragma mark - Private
+- (NSManagedObjectContext *) managedObjectContext {
+    return [[DSDataModelManager sharedManager] managedObjectContext];
+}
+
 - (NSFetchedResultsController *) fetchedConsolidatedOrdersResultController {
     if( _fetchedConsolidatedOrdersResultController != nil ){
         return _fetchedConsolidatedOrdersResultController;
@@ -65,13 +71,11 @@
                                                                                inManagedObjectContext:[self managedObjectContext]];
         DSConsolidatedOrderViewController *consolidatedOrderViewController = (DSConsolidatedOrderViewController *)[segue destinationViewController];
         [consolidatedOrderViewController setConsolidatedOrder:consolidatedOrder];
-        [consolidatedOrderViewController setManagedObjectContext:[self managedObjectContext]];
     }
     else if ([[segue identifier] isEqualToString:@"editConsolidatedOrderSegue"] == YES ) {
         DSConsolidatedOrder *consolidatedOrder = nil;
         DSConsolidatedOrderViewController *consolidatedOrderViewController = (DSConsolidatedOrderViewController *)[segue destinationViewController];
         [consolidatedOrderViewController setConsolidatedOrder:consolidatedOrder];
-        [consolidatedOrderViewController setManagedObjectContext:[self managedObjectContext]];
     }
 }
 
