@@ -2,7 +2,7 @@
 //  DSConsolidatedOrder.h
 //  DailySnacks
 //
-//  Created by Rakesh Patole on 22/06/13.
+//  Created by Rakesh Patole on 23/06/13.
 //  Copyright (c) 2013 Rakesh Patole. All rights reserved.
 //
 
@@ -13,7 +13,7 @@
 
 @interface DSConsolidatedOrder : NSManagedObject
 
-@property (nonatomic, retain) NSDate * createOn;
+@property (nonatomic, retain) NSDate * dateCreated;
 @property (nonatomic, retain) NSSet *perPersonOrders;
 @end
 

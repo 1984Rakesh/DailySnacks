@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3381.3" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="DSConsolidatedOrder" representedClassName="DSConsolidatedOrder" syncable="YES">
-        <attribute name="createOn" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="dateCreated" attributeType="Date" indexed="YES" syncable="YES"/>
         <relationship name="perPersonOrders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DSPerPersonOrder" inverseName="consolidatedOrder" inverseEntity="DSPerPersonOrder" syncable="YES"/>
     </entity>
     <entity name="DSPerPersonOrder" representedClassName="DSPerPersonOrder" syncable="YES">
@@ -33,7 +33,7 @@
         <element name="DSPerPersonOrder" positionX="-137" positionY="-252" width="128" height="88"/>
         <element name="DSPerson" positionX="34" positionY="-360" width="128" height="73"/>
         <element name="DSSnack" positionX="241" positionY="-162" width="128" height="88"/>
-        <element name="DSSnackPrice" positionX="412" positionY="-162" width="128" height="88"/>
         <element name="DSSnackOrder" positionX="45" positionY="-162" width="128" height="88"/>
+        <element name="DSSnackPrice" positionX="412" positionY="-162" width="128" height="88"/>
     </elements>
 </model>

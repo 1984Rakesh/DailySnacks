@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B02FB561776B85500C33524 /* DSConsolidatedOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B02FB551776B85500C33524 /* DSConsolidatedOrderViewController.m */; };
+		2B02FB591776B91C00C33524 /* DSPerPersonOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B02FB581776B91C00C33524 /* DSPerPersonOrderViewController.m */; };
+		2B02FB5C1776B98400C33524 /* DSSnackOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B02FB5B1776B98400C33524 /* DSSnackOrderViewController.m */; };
+		2B02FB601776CB0F00C33524 /* DOrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B02FB5F1776CB0F00C33524 /* DOrderListCell.m */; };
 		2B1797F817761A29004D6584 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1797F717761A29004D6584 /* Foundation.framework */; };
 		2B1797FA17761A29004D6584 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1797F917761A29004D6584 /* CoreGraphics.framework */; };
 		2B1797FC17761A29004D6584 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1797FB17761A29004D6584 /* UIKit.framework */; };
@@ -41,6 +45,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B02FB541776B85500C33524 /* DSConsolidatedOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSConsolidatedOrderViewController.h; sourceTree = "<group>"; };
+		2B02FB551776B85500C33524 /* DSConsolidatedOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSConsolidatedOrderViewController.m; sourceTree = "<group>"; };
+		2B02FB571776B91C00C33524 /* DSPerPersonOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPerPersonOrderViewController.h; sourceTree = "<group>"; };
+		2B02FB581776B91C00C33524 /* DSPerPersonOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPerPersonOrderViewController.m; sourceTree = "<group>"; };
+		2B02FB5A1776B98400C33524 /* DSSnackOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSSnackOrderViewController.h; sourceTree = "<group>"; };
+		2B02FB5B1776B98400C33524 /* DSSnackOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSSnackOrderViewController.m; sourceTree = "<group>"; };
+		2B02FB5E1776CB0F00C33524 /* DOrderListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOrderListCell.h; sourceTree = "<group>"; };
+		2B02FB5F1776CB0F00C33524 /* DOrderListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOrderListCell.m; sourceTree = "<group>"; };
 		2B1797F417761A29004D6584 /* DailySnacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailySnacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B1797F717761A29004D6584 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2B1797F917761A29004D6584 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -99,6 +111,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B02FB5D1776CA9700C33524 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				2B02FB5E1776CB0F00C33524 /* DOrderListCell.h */,
+				2B02FB5F1776CB0F00C33524 /* DOrderListCell.m */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
 		2B1797EB17761A29004D6584 = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +153,7 @@
 		2B1797FD17761A29004D6584 /* DailySnacks */ = {
 			isa = PBXGroup;
 			children = (
+				2B02FB5D1776CA9700C33524 /* TableViewCells */,
 				2B33C985177624EB009F697F /* ViewControllers */,
 				2B33C966177621D3009F697F /* Model */,
 				2B17980617761A29004D6584 /* DSAppDelegate.h */,
@@ -197,6 +219,12 @@
 		2B33C985177624EB009F697F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2B02FB541776B85500C33524 /* DSConsolidatedOrderViewController.h */,
+				2B02FB551776B85500C33524 /* DSConsolidatedOrderViewController.m */,
+				2B02FB571776B91C00C33524 /* DSPerPersonOrderViewController.h */,
+				2B02FB581776B91C00C33524 /* DSPerPersonOrderViewController.m */,
+				2B02FB5A1776B98400C33524 /* DSSnackOrderViewController.h */,
+				2B02FB5B1776B98400C33524 /* DSSnackOrderViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -305,6 +333,10 @@
 				2B17980E17761A29004D6584 /* DSViewController.m in Sources */,
 				2B17980817761A29004D6584 /* DSAppDelegate.m in Sources */,
 				2B33C9721776220A009F697F /* DSConsolidatedOrder.m in Sources */,
+				2B02FB591776B91C00C33524 /* DSPerPersonOrderViewController.m in Sources */,
+				2B02FB601776CB0F00C33524 /* DOrderListCell.m in Sources */,
+				2B02FB561776B85500C33524 /* DSConsolidatedOrderViewController.m in Sources */,
+				2B02FB5C1776B98400C33524 /* DSSnackOrderViewController.m in Sources */,
 				2B33C96C1776220A009F697F /* DSSnackPrice.m in Sources */,
 				2B17982E17761A54004D6584 /* Model.xcdatamodeld in Sources */,
 				2B33C9781776220A009F697F /* DSSnackOrder.m in Sources */,
@@ -434,6 +466,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DailySnacks/DailySnacks-Prefix.pch";
 				INFOPLIST_FILE = "DailySnacks/DailySnacks-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -447,6 +480,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DailySnacks/DailySnacks-Prefix.pch";
 				INFOPLIST_FILE = "DailySnacks/DailySnacks-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

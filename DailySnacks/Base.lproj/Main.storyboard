@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4457.6" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="qiR-Iz-smt">
     <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3682.6"/>
     </dependencies>
     <scenes>
@@ -32,14 +33,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="WZr-f4-ubA">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="WZr-f4-ubA" customClass="DOrderListCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wF9-7X-Rb8">
+                                            <rect key="frame" x="20" y="11" width="267" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <outlet property="titleLabel" destination="wF9-7X-Rb8" id="GyA-sI-qMM"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -63,10 +76,10 @@
             </objects>
             <point key="canvasLocation" x="310" y="-378"/>
         </scene>
-        <!--Table View Controller - Consolidated Order-->
+        <!--Consolidated Order View Controller - Consolidated Order-->
         <scene sceneID="Ts1-Ml-4TN">
             <objects>
-                <tableViewController id="w7x-xL-L5p" sceneMemberID="viewController">
+                <tableViewController id="w7x-xL-L5p" customClass="DSConsolidatedOrderViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="wtr-0g-Qko">
                         <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -100,10 +113,10 @@
             </objects>
             <point key="canvasLocation" x="758" y="-378"/>
         </scene>
-        <!--Table View Controller - Per Person Order-->
+        <!--Per Person Order View Controller - Per Person Order-->
         <scene sceneID="CJh-xk-Dwy">
             <objects>
-                <tableViewController id="IcU-7G-UDK" sceneMemberID="viewController">
+                <tableViewController id="IcU-7G-UDK" customClass="DSPerPersonOrderViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Ear-IF-rKO">
                         <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -208,10 +221,10 @@
             </objects>
             <point key="canvasLocation" x="2238" y="11"/>
         </scene>
-        <!--Table View Controller - Snack Order-->
+        <!--Snack Order View Controller - Snack Order-->
         <scene sceneID="3I8-M6-5Cz">
             <objects>
-                <tableViewController id="hvK-6r-5aB" sceneMemberID="viewController">
+                <tableViewController id="hvK-6r-5aB" customClass="DSSnackOrderViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="N82-q2-XXF">
                         <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -342,6 +355,21 @@
         </scene>
     </scenes>
     <classes>
+        <class className="DOrderListCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DOrderListCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DSConsolidatedOrderViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSConsolidatedOrderViewController.h"/>
+        </class>
+        <class className="DSPerPersonOrderViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSPerPersonOrderViewController.h"/>
+        </class>
+        <class className="DSSnackOrderViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSSnackOrderViewController.h"/>
+        </class>
         <class className="DSViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DSViewController.h"/>
         </class>
