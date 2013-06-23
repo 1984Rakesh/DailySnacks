@@ -132,6 +132,7 @@
 		2B1797FD17761A29004D6584 /* DailySnacks */ = {
 			isa = PBXGroup;
 			children = (
+				2B33C985177624EB009F697F /* ViewControllers */,
 				2B33C966177621D3009F697F /* Model */,
 				2B17980617761A29004D6584 /* DSAppDelegate.h */,
 				2B17980717761A29004D6584 /* DSAppDelegate.m */,
@@ -191,6 +192,13 @@
 				2B33C96817762209009F697F /* DSPerPersonOrder.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2B33C985177624EB009F697F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
