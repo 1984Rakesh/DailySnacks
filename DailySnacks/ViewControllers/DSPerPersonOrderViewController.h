@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DSPerPersonOrder.h"
 
 @interface DSPerPersonOrderViewController : UITableViewController
+
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) DSPerPersonOrder *perPersonOrder;
 
 @end

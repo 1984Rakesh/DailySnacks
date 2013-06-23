@@ -64,7 +64,14 @@
         DSConsolidatedOrder *consolidatedOrder = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([DSConsolidatedOrder class])
                                                                                inManagedObjectContext:[self managedObjectContext]];
         DSConsolidatedOrderViewController *consolidatedOrderViewController = (DSConsolidatedOrderViewController *)[segue destinationViewController];
-        [consolidatedOrderViewController setConsolidatedOrder:consolidatedOrder];        
+        [consolidatedOrderViewController setConsolidatedOrder:consolidatedOrder];
+        [consolidatedOrderViewController setManagedObjectContext:[self managedObjectContext]];
+    }
+    else if ([[segue identifier] isEqualToString:@"editConsolidatedOrderSegue"] == YES ) {
+        DSConsolidatedOrder *consolidatedOrder = nil;
+        DSConsolidatedOrderViewController *consolidatedOrderViewController = (DSConsolidatedOrderViewController *)[segue destinationViewController];
+        [consolidatedOrderViewController setConsolidatedOrder:consolidatedOrder];
+        [consolidatedOrderViewController setManagedObjectContext:[self managedObjectContext]];
     }
 }
 

@@ -34,6 +34,13 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - Segue
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if( [[segue identifier] isEqualToString:@""] == YES ){
+        
+    }
+}
+
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

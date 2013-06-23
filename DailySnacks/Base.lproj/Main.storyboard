@@ -105,10 +105,13 @@
                     <navigationItem key="navigationItem" title="Consolidated Order" id="LbC-iK-tVa">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="mo7-xq-wBr">
                             <connections>
-                                <segue destination="IcU-7G-UDK" kind="push" id="nzH-pV-CCo"/>
+                                <segue destination="IcU-7G-UDK" kind="push" identifier="newPerPersonOrder" id="nzH-pV-CCo"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="IcU-7G-UDK" kind="push" identifier="editPerPersonOrder" id="xbK-MQ-G0V"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nL4-9w-DWF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -361,6 +364,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="xbK-MQ-G0V"/>
         <segue reference="SH8-o0-taW"/>
         <segue reference="kjY-y5-GX0"/>
         <segue reference="CVD-D4-ufA"/>

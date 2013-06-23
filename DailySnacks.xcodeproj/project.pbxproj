@@ -32,6 +32,7 @@
 		2B33C9721776220A009F697F /* DSConsolidatedOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B33C9711776220A009F697F /* DSConsolidatedOrder.m */; };
 		2B33C9751776220A009F697F /* DSPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B33C9741776220A009F697F /* DSPerson.m */; };
 		2B33C9781776220A009F697F /* DSSnackOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B33C9771776220A009F697F /* DSSnackOrder.m */; };
+		2BAF12031776E37A007B1634 /* DSDataModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF12021776E37A007B1634 /* DSDataModelManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,8 @@
 		2B33C9741776220A009F697F /* DSPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPerson.m; sourceTree = "<group>"; };
 		2B33C9761776220A009F697F /* DSSnackOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSSnackOrder.h; sourceTree = "<group>"; };
 		2B33C9771776220A009F697F /* DSSnackOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSSnackOrder.m; sourceTree = "<group>"; };
+		2BAF12011776E37A007B1634 /* DSDataModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSDataModelManager.h; sourceTree = "<group>"; };
+		2BAF12021776E37A007B1634 /* DSDataModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSDataModelManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +215,8 @@
 				2B33C96B1776220A009F697F /* DSSnackPrice.m */,
 				2B33C96717762209009F697F /* DSPerPersonOrder.h */,
 				2B33C96817762209009F697F /* DSPerPersonOrder.m */,
+				2BAF12011776E37A007B1634 /* DSDataModelManager.h */,
+				2BAF12021776E37A007B1634 /* DSDataModelManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -341,6 +346,7 @@
 				2B17982E17761A54004D6584 /* Model.xcdatamodeld in Sources */,
 				2B33C9781776220A009F697F /* DSSnackOrder.m in Sources */,
 				2B33C96917762209009F697F /* DSPerPersonOrder.m in Sources */,
+				2BAF12031776E37A007B1634 /* DSDataModelManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
