@@ -34,8 +34,16 @@
     if( [[self snackOrdersFetchedResultsController] performFetch:&error] == NO ){
         NSLog(@"Error Fetching People :: %@",[error localizedDescription]);
     }
-    
     [self updateHeaderView];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    if( [[[self navigationController] viewControllers] indexOfObject:self] == NSNotFound ){
+        NSError *error = nil;
+        if( NO ) {
+            
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {

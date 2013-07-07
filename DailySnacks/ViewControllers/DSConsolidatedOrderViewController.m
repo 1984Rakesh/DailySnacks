@@ -11,35 +11,49 @@
 
 
 #import "DSConsolidatedOrder.h"
+#import "DSSnackOrder.h"
+#import "DSSnack.h"
 
-@interface DSConsolidatedOrderViewController ()
+typedef NS_ENUM( NSInteger, ListSortType) {
+    kSortListByPerson = 0,
+    kSortListBySnacks = 1
+};
+
+@interface DSConsolidatedOrderViewController () {
+    ListSortType listSortType;
+}
 @property (weak, nonatomic) IBOutlet UILabel *lblOrderTotal;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segcSortListType;
+@property (nonatomic, retain) NSFetchedResultsController *sortListByPersonFetchedResultController;
+@property (nonatomic, retain) NSFetchedResultsController *sortListBySnackFetchedResultController;
 
-@property (nonatomic, retain) NSFetchedResultsController *perPersonOrderFetchedResultsController;
-
+- (NSFetchedResultsController *) perPersonOrderFetchedResultsController;
 - (NSManagedObjectContext *) managedObjectContext;
+- (NSPredicate *) fetchPredicate;
+- (DSPerPersonOrder *) perPersonOrderAtIndexPath:(NSIndexPath *)indexPath;
+- (void) updateFetchResultController;
 
-- (void)updateHeaderView;
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void) setListSortType:(ListSortType)type;
+- (void) updateHeaderView;
+- (void) configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
 @implementation DSConsolidatedOrderViewController
 
-NS_ENUM( NSInteger, ListSortType) {
-    kSortListByPerson,
-    kSortListBySnacks
-};
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     NSError *error = nil;
-    if( [[self perPersonOrderFetchedResultsController] performFetch:&error] == NO ){
+    if( [[self sortListByPersonFetchedResultController] performFetch:&error] == NO ){
         NSLog(@"Error Fetching People :: %@",[error localizedDescription]);
     }
     
+    if( [[self sortListBySnackFetchedResultController] performFetch:&error] == NO ){
+        NSLog(@"Error Fetching People :: %@",[error localizedDescription]);
+    }
+    
+    [self setListSortType:[[self segcSortListType] selectedSegmentIndex]];
     [self updateHeaderView];
 }
 
@@ -58,38 +72,115 @@ NS_ENUM( NSInteger, ListSortType) {
     return _consolidatedOrder;
 }
 
+#pragma mark - Actions
+- (IBAction)segcSortListTypeChanged:(id)sender {
+    [self setListSortType:[(UISegmentedControl *)sender selectedSegmentIndex]];
+}
+
 #pragma mark - Private
 - (NSManagedObjectContext *) managedObjectContext {
     return [[DSDataModelManager sharedManager] managedObjectContext];
 }
 
+- (NSPredicate *)fetchPredicate {
+    NSPredicate *fetchPredicate = [NSPredicate predicateWithFormat:@"consolidatedOrder == %@",[self consolidatedOrder]];
+    return fetchPredicate;
+}
+
+- (void) updateFetchResultController {
+}
+
 - (NSFetchedResultsController *) perPersonOrderFetchedResultsController {
-    if( _perPersonOrderFetchedResultsController == nil ){
-        
-        NSPredicate *fetchPredicate = [NSPredicate predicateWithFormat:@"consolidatedOrder == %@",[self consolidatedOrder]];
+    NSFetchedResultsController *returnFetchedResultsController = nil;
+    
+    switch (listSortType) {
+        case kSortListByPerson:
+            returnFetchedResultsController = [self sortListByPersonFetchedResultController];
+            break;
+            
+        case kSortListBySnacks:
+            returnFetchedResultsController = [self sortListBySnackFetchedResultController];
+            break;
+    }
+    
+    return returnFetchedResultsController;
+    
+
+}
+
+-(NSFetchedResultsController *)sortListByPersonFetchedResultController {
+    if( _sortListByPersonFetchedResultController == nil ){
+
+        NSPredicate *fetchPredicate = [self fetchPredicate];
         NSSortDescriptor *fetchSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"person.name"
+                                                                              ascending:YES];
+
+
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"DSPerPersonOrder"];
+        [fetchRequest setPredicate:fetchPredicate];
+        [fetchRequest setSortDescriptors:[NSArray arrayWithObject:fetchSortDescriptor]];
+
+
+        _sortListByPersonFetchedResultController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                                   managedObjectContext:[[DSDataModelManager sharedManager] managedObjectContext]
+                                                                                     sectionNameKeyPath:nil
+                                                                                              cacheName:nil];
+        [_sortListByPersonFetchedResultController setDelegate:self];
+    }
+    
+    return _sortListByPersonFetchedResultController;
+}
+
+-(NSFetchedResultsController *)sortListBySnackFetchedResultController {
+    if( _sortListBySnackFetchedResultController == nil ){
+        
+        NSPredicate *fetchPredicate = [NSPredicate predicateWithFormat:@"personOrder.consolidatedOrder == %@",[self consolidatedOrder]];
+        NSSortDescriptor *fetchSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"snack.name"
                                                                               ascending:YES];
         
         
-        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"DSPerPersonOrder"];
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"DSSnackOrder"];
         [fetchRequest setPredicate:fetchPredicate];
         [fetchRequest setSortDescriptors:[NSArray arrayWithObject:fetchSortDescriptor]];
         
         
-        _perPersonOrderFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                                   managedObjectContext:[[DSDataModelManager sharedManager] managedObjectContext]
-                                                                                     sectionNameKeyPath:nil
-                                                                                              cacheName:nil];
-        [_perPersonOrderFetchedResultsController setDelegate:self];
+        _sortListBySnackFetchedResultController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                                       managedObjectContext:[[DSDataModelManager sharedManager] managedObjectContext]
+                                                                                         sectionNameKeyPath:@"snack.name"
+                                                                                                  cacheName:nil];
+        [_sortListBySnackFetchedResultController setDelegate:self];
     }
     
-    return _perPersonOrderFetchedResultsController;
+    return _sortListBySnackFetchedResultController;
+}
+
+- (DSPerPersonOrder *) perPersonOrderAtIndexPath:(NSIndexPath *)indexPath {
+    DSPerPersonOrder *perPersonOrder = nil;
+    switch (listSortType) {
+        case kSortListByPerson:
+            perPersonOrder = [[self sortListByPersonFetchedResultController] objectAtIndexPath:indexPath];
+            break;
+            
+        case kSortListBySnacks: {
+            DSSnackOrder *snackOrder = [[self sortListBySnackFetchedResultController] objectAtIndexPath:indexPath];
+            perPersonOrder = [snackOrder personOrder];
+        }
+            break;
+    }
+    return perPersonOrder;
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    DSPerPersonOrder *perPersomOrder = [[self perPersonOrderFetchedResultsController] objectAtIndexPath:indexPath];
-    [[cell textLabel] setText:[[perPersomOrder person] name]];
-    [[cell detailTextLabel] setText:[[perPersomOrder orderTotal] stringValue]];
+    if( listSortType == kSortListByPerson ){
+        DSPerPersonOrder *perPersomOrder = [[self perPersonOrderFetchedResultsController] objectAtIndexPath:indexPath];
+        [[cell textLabel] setText:[[perPersomOrder person] name]];
+        [[cell detailTextLabel] setText:[[perPersomOrder orderTotal] stringValue]];
+    }
+    else {
+        DSSnackOrder *snackOrder = [[self perPersonOrderFetchedResultsController] objectAtIndexPath:indexPath];
+        [[cell textLabel] setText:[[[snackOrder personOrder] person] name]];
+        [[cell detailTextLabel] setText:[[snackOrder count] stringValue]];
+    }
 }
 
 - (void)updateHeaderView {
@@ -98,11 +189,16 @@ NS_ENUM( NSInteger, ListSortType) {
     [[self lblOrderTotal] setText:perOrderTotal];
 }
 
+- (void) setListSortType:(ListSortType)type {
+    listSortType = type;
+    [[self tableView] reloadData];
+}
+
 #pragma mark - Segue
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if( [[segue identifier] isEqualToString:@"editPerPersonOrder"] == YES ){
         NSIndexPath *indexPath = [[self tableView] indexPathForCell:(UITableViewCell *)sender];
-        DSPerPersonOrder *perPersonOrder = [[self perPersonOrderFetchedResultsController] objectAtIndexPath:indexPath];
+        DSPerPersonOrder *perPersonOrder = [self perPersonOrderAtIndexPath:indexPath];
         DSPerPersonOrderViewController *perPersonOrderViewController = [segue destinationViewController];
         [perPersonOrderViewController setPerPersonOrder:perPersonOrder];
     }
@@ -133,15 +229,32 @@ NS_ENUM( NSInteger, ListSortType) {
     return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSString *sectionTitle = nil;
+    if( listSortType == kSortListBySnacks ){
+        id<NSFetchedResultsSectionInfo> sectionInfo = [[[self perPersonOrderFetchedResultsController] sections] objectAtIndex:section];
+        DSSnack *snack = [(DSSnackOrder *)[[sectionInfo objects] objectAtIndex:0] snack];
+        sectionTitle = [sectionInfo name];
+        NSNumber *totalOrderForSnack = [[self consolidatedOrder] totalOrdersForSnack:snack];
+        sectionTitle = [sectionTitle stringByAppendingFormat:@" :: %@",[totalOrderForSnack stringValue]];
+    }
+    return sectionTitle;
+}
+
 #pragma mark - NSFetchedResultsControllerDelegate
 - (void) controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    [[self tableView] beginUpdates];
+    if( [controller isEqual:[self perPersonOrderFetchedResultsController]] == YES ){
+        [[self tableView] beginUpdates];
+    }
 }
 
 - (void) controller:(NSFetchedResultsController *)controller
    didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo
             atIndex:(NSUInteger)sectionIndex
       forChangeType:(NSFetchedResultsChangeType)type {
+    if( [controller isEqual:[self perPersonOrderFetchedResultsController]] == NO ){
+        return;
+    }
     switch(type) {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
@@ -158,7 +271,9 @@ NS_ENUM( NSInteger, ListSortType) {
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath {
-    
+    if( [controller isEqual:[self perPersonOrderFetchedResultsController]] == NO ){
+        return;
+    }
     UITableView *tableView = self.tableView;
     switch(type) {
             
@@ -187,6 +302,9 @@ NS_ENUM( NSInteger, ListSortType) {
 }
 
 - (void) controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    if( [controller isEqual:[self perPersonOrderFetchedResultsController]] == NO ){
+        return;
+    }
     [self updateHeaderView];
     [[self tableView] endUpdates];
 }

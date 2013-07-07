@@ -24,4 +24,8 @@
     return total;
 }
 
+- (DSSnackOrder *) snackOrderForSnack:(DSSnack *)snack {
+    return nil;
+}
+
 @end

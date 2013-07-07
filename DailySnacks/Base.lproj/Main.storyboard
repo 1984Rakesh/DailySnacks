@@ -90,12 +90,15 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CeD-9T-oMw">
-                                    <rect key="frame" x="60" y="11" width="201" height="44"/>
+                                    <rect key="frame" x="60" y="9" width="201" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <segments>
                                         <segment title="By Person"/>
                                         <segment title="By Snack"/>
                                     </segments>
+                                    <connections>
+                                        <action selector="segcSortListTypeChanged:" destination="w7x-xL-L5p" eventType="valueChanged" id="hTE-PY-csI"/>
+                                    </connections>
                                 </segmentedControl>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PlG-pI-XIo">
                                     <rect key="frame" x="60" y="62" width="201" height="21"/>
@@ -110,10 +113,10 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="CeD-9T-oMw" firstAttribute="leading" secondItem="PlG-pI-XIo" secondAttribute="leading" type="default" id="44z-1v-mwe"/>
-                                <constraint firstItem="CeD-9T-oMw" firstAttribute="centerX" secondItem="rXJ-E4-ECB" secondAttribute="centerX" type="default" id="JoW-DF-b9v"/>
-                                <constraint firstItem="PlG-pI-XIo" firstAttribute="top" secondItem="CeD-9T-oMw" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Vfo-iL-ohW"/>
+                                <constraint firstAttribute="bottom" secondItem="PlG-pI-XIo" secondAttribute="bottom" constant="11" id="Vs4-OB-Ruj"/>
                                 <constraint firstItem="PlG-pI-XIo" firstAttribute="trailing" secondItem="CeD-9T-oMw" secondAttribute="trailing" type="default" id="XTw-1y-AFL"/>
-                                <constraint firstItem="CeD-9T-oMw" firstAttribute="top" secondItem="rXJ-E4-ECB" secondAttribute="top" constant="11" type="default" id="Yin-Gg-Yjo"/>
+                                <constraint firstItem="CeD-9T-oMw" firstAttribute="top" secondItem="rXJ-E4-ECB" secondAttribute="top" constant="9" id="epl-oA-uGq"/>
+                                <constraint firstItem="CeD-9T-oMw" firstAttribute="centerX" secondItem="rXJ-E4-ECB" secondAttribute="centerX" type="default" id="uLn-64-ill"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -161,6 +164,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="lblOrderTotal" destination="PlG-pI-XIo" id="z6a-q2-ESo"/>
+                        <outlet property="segcSortListType" destination="CeD-9T-oMw" id="s1T-5w-Zki"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nL4-9w-DWF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -180,30 +184,47 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Person" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIJ-Go-C0e">
-                                    <rect key="frame" x="13" y="11" width="204" height="21"/>
+                                    <rect key="frame" x="20" y="7" width="204" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="204" scoringType="23.5" id="M2I-ji-Mg3"/>
-                                        <constraint firstAttribute="height" constant="21" scoringType="23.5" id="P1o-sX-4kN"/>
+                                        <constraint firstAttribute="height" constant="30" id="1Xb-IV-W7s"/>
+                                        <constraint firstAttribute="width" constant="204" id="GXM-LM-WFH"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YKO-cv-RWF">
-                                    <rect key="frame" x="262" y="11" width="38" height="21"/>
+                                    <rect key="frame" x="232" y="7" width="38" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vsp-25-nVG">
+                                    <rect key="frame" x="274" y="6" width="29" height="31"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal">
+                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <segue destination="qbN-cC-bWs" kind="push" identifier="selectPersonSegue" id="JJz-e9-MPY"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <gestureRecognizers/>
                             <constraints>
-                                <constraint firstItem="TIJ-Go-C0e" firstAttribute="top" secondItem="zOg-WI-vKd" secondAttribute="top" constant="11" type="default" id="Bbu-Ng-pgE"/>
-                                <constraint firstItem="TIJ-Go-C0e" firstAttribute="baseline" secondItem="YKO-cv-RWF" secondAttribute="baseline" type="default" id="F1U-wk-npY"/>
-                                <constraint firstItem="TIJ-Go-C0e" firstAttribute="leading" secondItem="zOg-WI-vKd" secondAttribute="leading" constant="13" type="default" id="eZ0-6N-TyF"/>
-                                <constraint firstAttribute="trailing" secondItem="YKO-cv-RWF" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="sI7-DT-yQr"/>
-                                <constraint firstItem="TIJ-Go-C0e" firstAttribute="top" secondItem="YKO-cv-RWF" secondAttribute="top" type="default" id="zXk-bj-xqO"/>
+                                <constraint firstItem="YKO-cv-RWF" firstAttribute="top" secondItem="TIJ-Go-C0e" secondAttribute="top" type="default" id="311-sn-ogq"/>
+                                <constraint firstItem="TIJ-Go-C0e" firstAttribute="centerY" secondItem="zOg-WI-vKd" secondAttribute="centerY" type="default" id="MOi-Rd-C8Q"/>
+                                <constraint firstAttribute="trailing" secondItem="vsp-25-nVG" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="ToU-u3-rIj"/>
+                                <constraint firstItem="vsp-25-nVG" firstAttribute="top" secondItem="zOg-WI-vKd" secondAttribute="top" constant="10" id="Ual-uU-lQl"/>
+                                <constraint firstItem="YKO-cv-RWF" firstAttribute="leading" secondItem="TIJ-Go-C0e" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="ejL-d2-4xB"/>
+                                <constraint firstItem="YKO-cv-RWF" firstAttribute="baseline" secondItem="TIJ-Go-C0e" secondAttribute="baseline" type="default" id="urC-zK-8rw"/>
+                                <constraint firstItem="TIJ-Go-C0e" firstAttribute="leading" secondItem="zOg-WI-vKd" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="wic-sT-Y7k"/>
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="4Rk-gL-E5P">
@@ -289,11 +310,7 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Per Person Order" id="ybT-nk-lI9">
-                        <barButtonItem key="rightBarButtonItem" title="Person" id="FpX-X1-xv3">
-                            <connections>
-                                <segue destination="qbN-cC-bWs" kind="push" identifier="selectPersonSegue" id="NXZ-ua-hgW"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Cln-Tx-2qO"/>
                     </navigationItem>
                     <connections>
                         <outlet property="lblOrderTotal" destination="YKO-cv-RWF" id="L4y-zt-jf9"/>
@@ -632,6 +649,79 @@
             <point key="canvasLocation" x="2240" y="-883"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="DOrderListCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DOrderListCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DSConsolidatedOrderViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSConsolidatedOrderViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="lblOrderTotal" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="segcSortListType" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="DSPerPersonOrderViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSPerPersonOrderViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="lblOrderTotal" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblSelectedPersonName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DSPersonDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSPersonDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonAction:"/>
+                <relationship kind="action" name="saveButtonAction:"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="DSPersonListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSPersonListViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="delegate"/>
+            </relationships>
+        </class>
+        <class className="DSSnackDetailCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSSnackDetailCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DSSnackDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSSnackDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonAction:"/>
+                <relationship kind="action" name="saveButtonAction:"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="priceTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="DSSnackListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSSnackListViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="delegate"/>
+            </relationships>
+        </class>
+        <class className="DSSnackOrderCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSSnackOrderCell.h"/>
+            <relationships>
+                <relationship kind="action" name="stepperCountAction:"/>
+                <relationship kind="outlet" name="lblSnackCount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblSnackName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="stepperSnackCount" candidateClass="UIStepper"/>
+            </relationships>
+        </class>
+        <class className="DSViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 @class DSPerPersonOrder;
+@class DSSnack;
 
 @interface DSConsolidatedOrder : NSManagedObject
 
@@ -17,6 +18,7 @@
 @property (nonatomic, retain) NSSet *perPersonOrders;
 
 - (NSNumber *) orderTotal;
+- (NSNumber *) totalOrdersForSnack:(DSSnack *)snack;
 
 @end
 

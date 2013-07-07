@@ -9,7 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class DSConsolidatedOrder, DSPerson, DSSnackOrder;
+@class DSConsolidatedOrder;
+@class DSPerson;
+@class DSSnackOrder;
+@class DSSnack;
 
 @interface DSPerPersonOrder : NSManagedObject
 
@@ -18,6 +21,7 @@
 @property (nonatomic, retain) NSSet *snackOrders;
 
 - (NSNumber *) orderTotal;
+- (DSSnackOrder *) snackOrderForSnack:(DSSnack *)snack;
 
 @end
 

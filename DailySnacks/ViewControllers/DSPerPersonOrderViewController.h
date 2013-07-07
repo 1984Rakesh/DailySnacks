@@ -13,7 +13,7 @@
 
 #import "DSSnackOrderCell.h"
 
-@interface DSPerPersonOrderViewController : UITableViewController <DSPersonListViewControllerDelegate,DSSnackListViewControllerDelegate,NSFetchedResultsControllerDelegate,DSSnackOrderCellDelegate>
+@interface DSPerPersonOrderViewController : UITableViewController <DSPersonListViewControllerDelegate,DSSnackListViewControllerDelegate,NSFetchedResultsControllerDelegate,DSSnackOrderCellDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, retain) DSPerPersonOrder *perPersonOrder;
 @property (nonatomic, retain) DSConsolidatedOrder *consolidatedOrder;
