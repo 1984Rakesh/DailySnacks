@@ -19,4 +19,9 @@
     [self setDateCreated:[NSDate date]];
 }
 
+- (NSNumber *) orderTotal {
+    NSNumber *orderTotal = [[self perPersonOrders] valueForKeyPath:@"@sum.orderTotal"];
+    return orderTotal;
+}
+
 @end

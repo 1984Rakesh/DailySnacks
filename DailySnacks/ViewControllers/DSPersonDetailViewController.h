@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "DSPerson.h"
 
-@interface DSPersonDetailViewController : UIViewController <UITextFieldDelegate>
+@interface DSPersonDetailViewController : UIViewController <UITextFieldDelegate> {
+    BOOL isNew;
+}
 
 @property (nonatomic, retain) DSPerson *person;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;

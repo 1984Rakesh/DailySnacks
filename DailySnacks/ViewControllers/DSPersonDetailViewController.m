@@ -39,7 +39,17 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - Private
+- (DSPerson *) person {
+    if( _person == nil ){
+        isNew = YES;
+        _person = [NSEntityDescription insertNewObjectForEntityForName:@"DSPerson"
+                                                inManagedObjectContext:[self managedObjectContext]];
+    }
+    return _person;
+}
 
+#pragma mark - Text Field Delegate
 - (BOOL) textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
@@ -50,11 +60,31 @@
 }
 
 #pragma mark - Button Actions
+- (IBAction)cancelButtonAction:(id)sender {
+    if( isNew == YES ){
+        [[self managedObjectContext] deleteObject:[self person]];
+    }
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
 - (IBAction)saveButtonAction:(id)sender {
     [[self nameTextField] resignFirstResponder];
     NSError *error = nil;
     if( [[self managedObjectContext] save:&error] == NO ){
-        NSLog(@"Error Saving Person :: %@",[error localizedDescription]);
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:[[error userInfo] objectForKey:NSDetailedErrorsKey]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+    else {
+        [self dismissViewControllerAnimated:YES
+                                 completion:^{
+                                     
+                                 }];
     }
 }
 

@@ -16,13 +16,14 @@
 @property (nonatomic, retain) NSFetchedResultsController *fetchedConsolidatedOrdersResultController;
 
 - (NSManagedObjectContext *) managedObjectContext;
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (NSDateFormatter *) longStyleDateFormatter;
 
 @end
 
 @implementation DSViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     NSError *error = nil;
@@ -31,13 +32,21 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Private
+- (NSDateFormatter *) longStyleDateFormatter {
+    static NSDateFormatter *longStyleDateFormatter = nil;
+    if( longStyleDateFormatter == nil ){
+        longStyleDateFormatter = [[NSDateFormatter alloc] init];
+        [longStyleDateFormatter setDateStyle:NSDateFormatterLongStyle];
+        [longStyleDateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+    }
+    return longStyleDateFormatter;
+}
+
 - (NSManagedObjectContext *) managedObjectContext {
     return [[DSDataModelManager sharedManager] managedObjectContext];
 }
@@ -64,6 +73,15 @@
     return _fetchedConsolidatedOrdersResultController;
 }
 
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    DSConsolidatedOrder *consolidatedOrder = [[self fetchedConsolidatedOrdersResultController] objectAtIndexPath:indexPath];
+    
+    NSDateFormatter *mediumStyleDateFormatter = [self longStyleDateFormatter];
+    NSString *dateCreated = [mediumStyleDateFormatter stringFromDate:[consolidatedOrder dateCreated]];
+    
+    [[cell textLabel] setText:dateCreated];
+}
+
 #pragma mark - Segue
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if( [[segue identifier] isEqualToString:@"newConsolidatedOrderSegue"] == YES ){
@@ -73,7 +91,8 @@
         [consolidatedOrderViewController setConsolidatedOrder:consolidatedOrder];
     }
     else if ([[segue identifier] isEqualToString:@"editConsolidatedOrderSegue"] == YES ) {
-        DSConsolidatedOrder *consolidatedOrder = nil;
+        NSIndexPath *indexPath = [[self tableView] indexPathForCell:(UITableViewCell *)sender];
+        DSConsolidatedOrder *consolidatedOrder = [[self fetchedConsolidatedOrdersResultController] objectAtIndexPath:indexPath];
         DSConsolidatedOrderViewController *consolidatedOrderViewController = (DSConsolidatedOrderViewController *)[segue destinationViewController];
         [consolidatedOrderViewController setConsolidatedOrder:consolidatedOrder];
     }
@@ -92,12 +111,68 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"DSConsolidatedOrderCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    [self configureCell:cell atIndexPath:indexPath];
     return cell;
+}
+
+#pragma mark - NSFetchedResultsControllerDelegate
+- (void) controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [[self tableView] beginUpdates];
+}
+
+- (void) controller:(NSFetchedResultsController *)controller
+   didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo
+            atIndex:(NSUInteger)sectionIndex
+      forChangeType:(NSFetchedResultsChangeType)type {
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    UITableView *tableView = self.tableView;
+    
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath]
+                    atIndexPath:indexPath];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void) controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [[self tableView] endUpdates];
 }
 
 @end

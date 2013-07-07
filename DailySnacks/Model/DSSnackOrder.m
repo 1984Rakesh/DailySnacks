@@ -17,4 +17,9 @@
 @dynamic snack;
 @dynamic personOrder;
 
+- (NSNumber *) total {
+    float total = [[[self snack] price] floatValue] * [[self count] intValue];
+    return [NSNumber numberWithFloat:total];
+}
+
 @end

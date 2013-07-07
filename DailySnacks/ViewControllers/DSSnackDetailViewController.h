@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "DSSnack.h"
 
-@interface DSSnackDetailViewController : UIViewController <UITextFieldDelegate>
+@interface DSSnackDetailViewController : UIViewController <UITextFieldDelegate> {
+    BOOL isNew;
+}
 
 @property (nonatomic, retain) DSSnack *snack;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;

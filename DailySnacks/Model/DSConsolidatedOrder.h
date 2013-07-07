@@ -15,6 +15,9 @@
 
 @property (nonatomic, retain) NSDate * dateCreated;
 @property (nonatomic, retain) NSSet *perPersonOrders;
+
+- (NSNumber *) orderTotal;
+
 @end
 
 @interface DSConsolidatedOrder (CoreDataGeneratedAccessors)

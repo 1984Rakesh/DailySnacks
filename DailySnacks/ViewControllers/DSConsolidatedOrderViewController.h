@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "DSConsolidatedOrder.h"
 
-@interface DSConsolidatedOrderViewController : UITableViewController <NSFetchedResultsControllerDelegate>
-
+@interface DSConsolidatedOrderViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
+    BOOL isNew;
+}
 
 @property (nonatomic, retain) DSConsolidatedOrder *consolidatedOrder;
 

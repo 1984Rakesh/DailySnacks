@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DSSnackOrderCell : UITableViewCell
+@protocol DSSnackOrderCellDelegate;
+
+@interface DSSnackOrderCell : UITableViewCell {
+}
+@property (weak, nonatomic) IBOutlet UILabel *lblSnackCount;
+@property (weak, nonatomic) IBOutlet UILabel *lblSnackName;
+@property (weak, nonatomic) IBOutlet UIStepper *stepperSnackCount;
+@property (nonatomic, assign) id<DSSnackOrderCellDelegate> delegate;
+
+@end
+
+@protocol DSSnackOrderCellDelegate <NSObject>
+
+- (void) sanckOrderCell:(DSSnackOrderCell *)cell snackCountStepperValueChanged:(UIStepper *)stepper;
 
 @end

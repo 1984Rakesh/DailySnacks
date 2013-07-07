@@ -15,7 +15,7 @@
     </entity>
     <entity name="DSSnack" representedClassName="DSSnack" syncable="YES">
         <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
-        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="price" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="snackOrders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DSSnackOrder" inverseName="snack" inverseEntity="DSSnackOrder" syncable="YES"/>
     </entity>
     <entity name="DSSnackOrder" representedClassName="DSSnackOrder" syncable="YES">

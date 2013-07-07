@@ -26,4 +26,12 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)stepperCountAction:(id)sender {
+    if( _delegate != nil ){
+        [_delegate sanckOrderCell:self
+    snackCountStepperValueChanged:sender];
+    }
+}
+
+
 @end

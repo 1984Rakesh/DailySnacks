@@ -17,4 +17,6 @@
 @property (nonatomic, retain) DSSnack *snack;
 @property (nonatomic, retain) DSPerPersonOrder *personOrder;
 
+- (NSNumber *) total;
+
 @end

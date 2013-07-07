@@ -15,6 +15,8 @@
 @property (nonatomic, retain) NSFetchedResultsController *fetchedPeopleResultController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 @implementation DSPersonListViewController
@@ -45,14 +47,7 @@
 
 #pragma mark - Private
 - (NSManagedObjectContext *) managedObjectContext {
-    if( _managedObjectContext != nil ){
-        return _managedObjectContext;
-    }
-    
-    _managedObjectContext = [[NSManagedObjectContext alloc] init];
-    [_managedObjectContext setPersistentStoreCoordinator:[[DSDataModelManager sharedManager] persistentStoreCoordinator]];
-    
-    return _managedObjectContext;
+    return [[DSDataModelManager sharedManager] managedObjectContext];
 }
 
 - (NSFetchedResultsController *) fetchedPeopleResultController {
@@ -75,20 +70,21 @@
     return _fetchedPeopleResultController;
 }
 
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    DSPerson *person = [[self fetchedPeopleResultController] objectAtIndexPath:indexPath];
+    [[cell textLabel] setText:[person name]];
+}
+
 
  #pragma mark - Navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
      if( [[segue identifier] isEqualToString:@"newPersonSegue"] == YES ){
-         DSPerson *person = [NSEntityDescription insertNewObjectForEntityForName:@"DSPerson"
-                                                          inManagedObjectContext:[self managedObjectContext]];
          DSPersonDetailViewController *personDetailViewController = [segue destinationViewController];
-         [personDetailViewController setPerson:person];
          [personDetailViewController setManagedObjectContext:[self managedObjectContext]];
      }
      else if( [[segue identifier] isEqualToString:@"editPersonSegue"] == YES ){
          NSIndexPath *indexPath = [[self tableView] indexPathForCell:(DSPersonCell *)sender];
-         id<NSFetchedResultsSectionInfo> sectionInfo = [[[self fetchedPeopleResultController] sections] objectAtIndex:[indexPath section]];
-         DSPerson *person = [[sectionInfo objects] objectAtIndex:[indexPath row]];
+         DSPerson *person = [[self fetchedPeopleResultController] objectAtIndexPath:indexPath];
          DSPersonDetailViewController *personDetailViewController = [segue destinationViewController];
          [personDetailViewController setPerson:person];
          [personDetailViewController setManagedObjectContext:[self managedObjectContext]];
@@ -108,13 +104,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"DSPersonCell";
-    DSPersonCell *cell = (DSPersonCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    id<NSFetchedResultsSectionInfo> sectionInfo = [[[self fetchedPeopleResultController] sections] objectAtIndex:[indexPath section]];
-    DSPerson *person = [[sectionInfo objects] objectAtIndex:[indexPath row]];
-    
-    [[cell nameLabel] setText:[person name]];
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
@@ -127,6 +118,8 @@
         [delegate personListViewController:self
                            didSelectPerson:person];
     }
+    
+    [[self navigationController] popViewControllerAnimated:YES];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -170,8 +163,8 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-//            [self configureCell:[tableView cellForRowAtIndexPath:indexPath]
-//                    atIndexPath:indexPath];
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath]
+                    atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
@@ -186,8 +179,6 @@
 - (void) controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [[self tableView] endUpdates];
 }
-
-
 
 @end
 

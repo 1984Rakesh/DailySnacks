@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DSSnackListViewController : UITableViewController<NSFetchedResultsControllerDelegate>
+@class DSSnack;
+@protocol DSSnackListViewControllerDelegate;
+
+@interface DSSnackListViewController : UITableViewController<NSFetchedResultsControllerDelegate> {
+    __unsafe_unretained id<DSSnackListViewControllerDelegate> delegate;
+}
+@property (nonatomic, unsafe_unretained) IBOutlet id<DSSnackListViewControllerDelegate> delegate;
+
+@end
+
+@protocol DSSnackListViewControllerDelegate <NSObject>
+
+- (void) snackListViewController:(DSSnackListViewController *)snackListVC didSelectSnack:(DSSnack *)snack;
 
 @end

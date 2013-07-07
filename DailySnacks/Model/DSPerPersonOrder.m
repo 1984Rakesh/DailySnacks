@@ -18,4 +18,10 @@
 @dynamic person;
 @dynamic snackOrders;
 
+#pragma mark - Private
+- (NSNumber *) orderTotal {
+    NSNumber *total = [[self snackOrders] valueForKeyPath:@"@sum.total"];
+    return total;
+}
+
 @end

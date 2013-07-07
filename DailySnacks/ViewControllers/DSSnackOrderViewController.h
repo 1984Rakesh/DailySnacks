@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DSSnackListViewController.h"
 
-@interface DSSnackOrderViewController : UITableViewController
+@class DSPerPersonOrder;
+
+@interface DSSnackOrderViewController : UITableViewController 
+
+@property (nonatomic, retain) DSPerPersonOrder *perPersonOrder;
 
 @end

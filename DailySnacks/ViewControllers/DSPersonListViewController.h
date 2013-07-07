@@ -14,7 +14,7 @@
 @interface DSPersonListViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
     __unsafe_unretained id<DSPersonListViewControllerDelegate> delegate;
 }
-@property (nonatomic, unsafe_unretained) id<DSPersonListViewControllerDelegate> delegate;
+@property (nonatomic, unsafe_unretained) IBOutlet id<DSPersonListViewControllerDelegate> delegate;
 
 @end
 

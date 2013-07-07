@@ -15,9 +15,13 @@
 @property (nonatomic, retain) NSFetchedResultsController *fetchedSnackResultController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 @implementation DSSnackListViewController
+
+@synthesize delegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -43,14 +47,7 @@
 
 #pragma mark - Private
 - (NSManagedObjectContext *) managedObjectContext {
-    if( _managedObjectContext != nil ){
-        return _managedObjectContext;
-    }
-    
-    _managedObjectContext = [[NSManagedObjectContext alloc] init];
-    [_managedObjectContext setPersistentStoreCoordinator:[[DSDataModelManager sharedManager] persistentStoreCoordinator]];
-    
-    return _managedObjectContext;
+    return [[DSDataModelManager sharedManager] managedObjectContext];
 }
 
 - (NSFetchedResultsController *) fetchedSnackResultController {
@@ -73,21 +70,23 @@
     return _fetchedSnackResultController;
 }
 
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    DSSnack *snack = [[self fetchedSnackResultController] objectAtIndexPath:indexPath];
+    
+    [[(DSSnackDetailCell *)cell nameLabel] setText:[snack name]];
+    [[(DSSnackDetailCell *)cell priceLabel] setText:[[snack price] stringValue]];
+}
+
 
  #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if( [[segue identifier] isEqualToString:@"newSnackSegue"] == YES ){
-        NSString *entityName = NSStringFromClass([DSSnack class]);
-        DSSnack *snack = [NSEntityDescription insertNewObjectForEntityForName:entityName
-                                                       inManagedObjectContext:[self managedObjectContext]];
         DSSnackDetailViewController *snackDetailViewController = [segue destinationViewController];
-        [snackDetailViewController setSnack:snack];
         [snackDetailViewController setManagedObjectContext:[self managedObjectContext]];
     }
     else if ([[segue identifier] isEqualToString:@"editSnackSegue"] == YES ){
         NSIndexPath *indexPath = [[self tableView] indexPathForCell:(UITableViewCell *)sender];
-        id<NSFetchedResultsSectionInfo> sectionInfo = [[[self fetchedSnackResultController] sections] objectAtIndex:[indexPath section]];
-        DSSnack *snack = [[sectionInfo objects] objectAtIndex:[indexPath row]];
+        DSSnack *snack = [[self fetchedSnackResultController] objectAtIndexPath:indexPath];
         DSSnackDetailViewController *snackDetailViewController = [segue destinationViewController];
         [snackDetailViewController setSnack:snack];
         [snackDetailViewController setManagedObjectContext:[self managedObjectContext]];
@@ -108,14 +107,18 @@
 {
     static NSString *CellIdentifier = @"DSSnackDetailCell";
     DSSnackDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    id<NSFetchedResultsSectionInfo> sectionInfo = [[[self fetchedSnackResultController] sections] objectAtIndex:[indexPath section]];
-    DSSnack *snack = [[sectionInfo objects] objectAtIndex:[indexPath row]];
-    
-    [[cell nameLabel] setText:[snack name]];
-    [[cell priceLabel] setText:[[snack price] stringValue]];
-    
+    [self configureCell:cell atIndexPath:indexPath];
     return cell;
+}
+
+#pragma mark - Table View Delegate
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if( delegate != nil ){
+        DSSnack *snack = [[self fetchedSnackResultController] objectAtIndexPath:indexPath];
+        [delegate snackListViewController:self
+                           didSelectSnack:snack];
+    }
+    [[self navigationController] popViewControllerAnimated:YES];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -159,8 +162,8 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-            //            [self configureCell:[tableView cellForRowAtIndexPath:indexPath]
-            //                    atIndexPath:indexPath];
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath]
+                    atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:

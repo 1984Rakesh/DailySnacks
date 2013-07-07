@@ -27,10 +27,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[self nameTextField] setText:[[self snack] name]];
+    [[self priceTextField] setText:[[[self snack] price] stringValue]];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Public
+- (DSSnack *) snack {
+    if( _snack == nil ) {
+        isNew = YES;
+        _snack = [NSEntityDescription insertNewObjectForEntityForName:@"DSSnack"
+                                               inManagedObjectContext:[self managedObjectContext]];
+    }
+    
+    return _snack;
 }
 
 #pragma mark - UITextFeildDelegate
@@ -55,8 +69,28 @@
     [[self priceTextField] resignFirstResponder];
     NSError *error = nil;
     if( [[self managedObjectContext] save:&error] == NO ){
-        NSLog(@"Error Saving Snack :: %@",[error localizedDescription]);
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:[error localizedDescription]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
     }
+    else {
+        [self dismissViewControllerAnimated:YES
+                                 completion:^{
+                                     
+                                 }];
+    }
+}
+
+- (IBAction)cancelButtonAction:(id)sender {
+    if( isNew == YES ){
+        [[self managedObjectContext] deleteObject:[self snack]];
+    }
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 

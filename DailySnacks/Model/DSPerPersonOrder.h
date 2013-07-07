@@ -16,6 +16,9 @@
 @property (nonatomic, retain) DSConsolidatedOrder *consolidatedOrder;
 @property (nonatomic, retain) DSPerson *person;
 @property (nonatomic, retain) NSSet *snackOrders;
+
+- (NSNumber *) orderTotal;
+
 @end
 
 @interface DSPerPersonOrder (CoreDataGeneratedAccessors)
